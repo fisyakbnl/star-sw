@@ -22,8 +22,7 @@ class PlotHisto : public TObject {
     PlotHisto(PlotHisto &x);
 
     PlotHisto(const PlotHisto &x) {
-	//LOG("JEFF", "Copy Constructor");
-	histo = new TH1(*(x.histo));
+	histo = static_cast<TH1*>(x.histo->Clone());
 	if(x.legendText) setLegText(x.legendText);
 	if(x.legendArgs) setLegArgs(x.legendArgs);
     }
